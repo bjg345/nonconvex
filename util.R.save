@@ -1,0 +1,11 @@
+library(igraph)
+
+ind = 1:500
+
+load('u_points.Rdata')
+
+g_unchord = graph_from_adjacency_matrix(A.train[ind, ind], 'undirected')
+
+g_chord = is_chordal(g_unchord, newgraph=T)$newgraph
+
+saveRDS(list(g_unchord, g_chord, grid.train[ind,], vals = vals.train), 'out.rds')
